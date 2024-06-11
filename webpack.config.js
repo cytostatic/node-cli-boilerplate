@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
-
+const debug = process.env.NODE_ENV !== "production"; 
 
 module.exports = {
     entry: './src/index.ts',
@@ -10,6 +10,7 @@ module.exports = {
     },
     plugins: [new webpack.ProgressPlugin()],
 
+    devtool: debug ? 'inline-cheap-source-map' : false,
     target: 'node',
 
     module: {
